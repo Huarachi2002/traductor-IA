@@ -29,7 +29,7 @@ export const useAuthStore = () => {
         dispatch(onChecking());
         try {
             console.log({name,correo,password});
-            const {data} = await traslateApi.post('/users',{nombre:name,correo,password,confirmPassword: password,rol: "USER_ROLE"});
+            const {data} = await traslateApi.post('/users',{nombre:name,correo,password,confirmPassword: password,rol: "USER_ROL"});
             console.log(data);
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime());
