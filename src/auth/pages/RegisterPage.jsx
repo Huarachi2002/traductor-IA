@@ -2,38 +2,48 @@ import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { Link as RouterLink } from "react-router-dom"
 import { AuthLayout } from "../layout/AuthLayout"
 import { useForm } from "../../hook"
-import { useMemo, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { startCreatingUserWithEmailPassword } from "../../store/auth"
+import { useEffect, useMemo, useState } from "react"
+import { useAuthStore } from "../../hook/useAuthStore"
+import Swal from "sweetalert2"
 
 const formData = {
   email: '',
   password: '',
-  displayName: ''
+  password2: '',
+  name: ''
 }
 
 const formValidations = {
   email:[(value) => value.includes('@'),'El correo debe de tener una @'],
   password:[(value) => value.length >= 6,'El password debe de tener mas de 6 letras'],
-  displayName:[(value) => value.length >= 1,'El nombre es obligatorio'],
+  name:[(value) => value.length >= 1,'El nombre es obligatorio'],
 }
 
 export const RegisterPage = () => {
-  const dispatch = useDispatch();
   const [formSubmitted, setformSubmitted] = useState(false);
 
-  const {status, errorMessage} = useSelector(state => state.auth);
+  const {errorMessage,startRegister,status} = useAuthStore();
   const isCheckingAuthentication = useMemo(() => status === 'checking', [status]);
 
-  const {displayName,email, password,onInputChange, formState, 
-    isFormValid, displayNameValid, emailValid, passwordValid} = useForm(formData, formValidations);
+  const {name ,email, password, password2, onInputChange, 
+    isFormValid, nameValid, emailValid, passwordValid} = useForm(formData, formValidations);
   
-    const onSubmit = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
     setformSubmitted(true);
     if(!isFormValid) return;
-    dispatch( startCreatingUserWithEmailPassword(formState) );
+    if(password !== password2){
+      Swal.fire('Error en registro', 'Contraseñas no son iguales', 'error');
+    return;
   }
+    startRegister({name,correo:email,password});
+  }
+
+  useEffect(() => {
+    if(errorMessage !== undefined){
+        Swal.fire('Error en la autenticacion', errorMessage, 'error');
+    }
+  }, [errorMessage])
 
   return (
     <AuthLayout title="Register">
@@ -47,11 +57,11 @@ export const RegisterPage = () => {
                   type="text" 
                   placeholder="Mi nombre" 
                   fullWidth 
-                  name="displayName" 
-                  value={displayName} 
+                  name="name" 
+                  value={name} 
                   onChange={onInputChange}
-                  error={!!displayNameValid && formSubmitted}
-                  helperText={displayNameValid}/>
+                  error={!!nameValid && formSubmitted}
+                  helperText={nameValid}/>
               </Grid>
 
               <Grid item xs={12} sx={{mt:2}}>
@@ -75,6 +85,18 @@ export const RegisterPage = () => {
                   onChange={onInputChange}
                   error={!!passwordValid && formSubmitted}
                   helperText={passwordValid}/>
+              </Grid>
+
+              <Grid item xs={12} sx={{mt:2}}>
+                <TextField label="Repetir Contraseña" 
+                  type="password" 
+                  placeholder="Contraseña" 
+                  fullWidth name="password2" 
+                  value={password2} 
+                  onChange={onInputChange}
+                  // error={!!passwordValid && formSubmitted}
+                  // helperText={passwordValid}
+                  />
               </Grid>
 
               <Grid container spacing={2} sx={{mb:2, mt:1}}>

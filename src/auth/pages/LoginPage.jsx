@@ -1,11 +1,10 @@
-import { useMemo } from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { Google } from "@mui/icons-material";
+import { useEffect, useMemo } from "react";
 import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hook";
-import { checkingAutentication,startLoginWithEmailPassword } from "../../store/auth";
+import { useAuthStore } from "../../hook/useAuthStore";
+import Swal from "sweetalert2";
 
 const formData = {
   email: '',
@@ -14,8 +13,8 @@ const formData = {
 
 export const LoginPage = () => {
 
-  const {status, errorMessage} = useSelector(state => state.auth)
-  const dispatch = useDispatch();
+  const {startLogin,status, errorMessage} = useAuthStore();
+  
   const {email, password,onInputChange} = useForm(formData);
 
 
@@ -23,11 +22,15 @@ export const LoginPage = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log({email,password});
-
     //! No es la accion a despachar
-    dispatch(startLoginWithEmailPassword({email,password}));
+    startLogin({correo:email,password});
   }
+
+  useEffect(() => {
+    if(errorMessage !== undefined){
+        Swal.fire('Error en la autenticacion', errorMessage, 'error');
+    }
+  }, [errorMessage])
 
   return (
     <AuthLayout title="Login">

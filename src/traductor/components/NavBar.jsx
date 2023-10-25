@@ -1,17 +1,11 @@
 import { LogoutOutlined, MenuOutlined } from "@mui/icons-material"
 import { AppBar, Grid, IconButton, Toolbar, Typography } from "@mui/material"
-import { useDispatch, useSelector } from "react-redux"
-import { startLogout } from "../../store/auth";
+import { useAuthStore } from "../../hook/useAuthStore";
 
 export const NavBar = ({drawerWidth = 240}) => {
 
-    const {displayName} = useSelector(state => state.auth);
-    const dispatch = useDispatch();
+    const {startLogout} = useAuthStore();
 
-    const onLogout = () => {
-        dispatch(startLogout());
-    }
-  
     return (
     <AppBar position="fixed" sx={{ width: {sm: `calc(100% - ${drawerWidth}px)`, ml:{sm: `${drawerWidth}px`}}}}>
         <Toolbar>
@@ -20,7 +14,7 @@ export const NavBar = ({drawerWidth = 240}) => {
             </IconButton>
             <Grid container direction='row' justifyContent='space-between' alignItems='center'>
                 <Typography variant='h6' noWrap component='div'>Traslate-IA</Typography>
-                <IconButton onClick={onLogout} color='error'>
+                <IconButton onClick={startLogout} color='error'>
                     <LogoutOutlined/>
                 </IconButton>
             </Grid>
