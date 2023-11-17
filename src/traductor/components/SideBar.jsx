@@ -1,20 +1,22 @@
-import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
-import { useAuthStore } from "../../hook/useAuthStore"
-
-export const SideBar = ({drawerWidth=240}) => {
-  const {user} = useAuthStore();
+import '../../css/chat.css';
+import { useAuthStore } from '../../hook/useAuthStore';
+import { SidebarChat } from "./SidebarChat";
+export const SideBar = () => {
+    const chats = [1,2,3,4,5,6];
   return (
-    <Box component='nav' sx={{width:{sm: drawerWidth}, flexShrink:{sm:0}}}>
-        <Drawer variant="permanent" open sx={{display: {xs: 'block'}, '& .MuiDrawer-paper':{boxSizing: 'border-box', width:drawerWidth}}}>
-            <Toolbar>
-                <Typography variant="h6" noWrap component='div'>{user.name}</Typography>
-            </Toolbar>
-            <Divider/>
-        
-            <List>
-  
-            </List>
-        </Drawer>
-    </Box>
+    <div className="inbox_chat">
+
+        {
+            chats.map( (chat) => (
+                <SidebarChat key={ chat }/>
+            ))
+        }
+
+
+        {/* <!-- Espacio extra para scroll --> */}
+        <div className="extra_space"></div>
+
+
+    </div>
   )
 }

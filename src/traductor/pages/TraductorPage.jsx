@@ -1,15 +1,12 @@
-import { useDispatch } from "react-redux";
-import { TraductorLayout } from "../layout";
-
+import '../../css/chat.css';
+import { Messages } from "../components";
+import { TraductorLayout } from '../layout/TraductorLayout';
 
 export const TraductorPage = () => {
 
-  const dispatch = useDispatch();
-
   return (
     <TraductorLayout>
-      
-
+      <Messages/>
     </TraductorLayout>
   )
 }

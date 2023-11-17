@@ -13,12 +13,12 @@ const formData = {
 
 export const LoginPage = () => {
 
-  const {startLogin,status, errorMessage} = useAuthStore();
+  const {startLogin, errorMessage} = useAuthStore();
   
   const {email, password,onInputChange} = useForm(formData);
 
 
-  const isAuthenticating = useMemo(() => status === 'checking' , [status])
+  // const isAuthenticating = useMemo(() => status === 'checking' , [status])
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -53,12 +53,12 @@ export const LoginPage = () => {
                     </Alert>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <Button type="submit" variant="contained" fullWidth disabled={isAuthenticating}>
+                    <Button type="submit" variant="contained" fullWidth >
                       Login
                     </Button>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <Button variant="contained" fullWidth disabled={isAuthenticating}>
+                    <Button variant="contained" fullWidth >
                       <Link component={RouterLink} color="inherit" to="/auth/register">
                         Crear una cuenta
                       </Link>

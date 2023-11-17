@@ -34,8 +34,8 @@ export const RegisterPage = () => {
     if(!isFormValid) return;
     if(password !== password2){
       Swal.fire('Error en registro', 'Contraseñas no son iguales', 'error');
-    return;
-  }
+      return;
+    }
     startRegister({name,correo:email,password});
   }
 

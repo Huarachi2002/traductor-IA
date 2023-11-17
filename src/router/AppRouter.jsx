@@ -1,17 +1,15 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { CheckingAuth } from '../ui/';
 import { AuthRoutes } from '../auth/routes/AuthRoutes';
-import { TraductorRoutes } from '../traductor/routes/TraductorRoutes';
-// import { useCkeckAuth } from '../hook';
 import { useAuthStore } from '../hook/useAuthStore';
-import { useEffect } from 'react';
+import { PaymentPage, TraductorPage, UsersPage } from '../traductor/pages';
 
 export const AppRouter = () => {
-    const {status,checkAuthToken} = useAuthStore();
+    const {status} = useAuthStore();
 
-    useEffect(() => {
-      checkAuthToken();
-    }, []);
+    // useEffect(() => {
+    //   checkAuthToken();
+    // }, []);
   
     if(status === 'checking'){
       return <CheckingAuth/>;
@@ -28,7 +26,9 @@ export const AppRouter = () => {
                 )
                 : (
                     <>
-                        <Route path="/" element={ <TraductorRoutes /> } />
+                        <Route path="/" element={ <TraductorPage /> } />
+                        <Route path="/users" element={ <UsersPage /> } />
+                        <Route path="/payment" element={ <PaymentPage /> } />
                         <Route path="/*" element={ <Navigate to="/" /> } />
                     </>
                 )

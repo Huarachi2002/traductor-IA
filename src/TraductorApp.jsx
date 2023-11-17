@@ -1,10 +1,16 @@
+import { AuthProvider } from "./auth/context/AuthContext"
+import { SocketProvider } from "./context/SocketContext"
 import { AppRouter } from "./router/AppRouter"
 import { AppTheme } from "./theme"
 
 export const TraductorApp = () => {
   return (
-    <AppTheme>
-        <AppRouter/>
-    </AppTheme>
+    // <AuthProvider>
+      // <SocketProvider>
+        <AppTheme>
+            <AppRouter/>
+        </AppTheme>
+    //   </SocketProvider>
+    // </AuthProvider>
   )
 }
