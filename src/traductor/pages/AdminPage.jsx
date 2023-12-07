@@ -9,6 +9,7 @@ import traslateApi from "../../api/traslateApi";
 export const AdminPage = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [userData, setUserData] = useState([]);
+  const [empresaData, setEmpresaData] = useState([]);
 
   useEffect(() => {
     // Realiza la lógica para obtener datos según la opción seleccionada
@@ -27,6 +28,23 @@ export const AdminPage = () => {
           console.log(error);
         }
       }
+      if (selectedItem === 'Empresas') {
+        try {
+          const { data } = await traslateApi.get('/empresa', {
+            headers: {
+              'x-token': localStorage.getItem('token'),
+              // Otros encabezados según sea necesario
+            },
+          });
+          // Almacena los datos en el estado
+          setEmpresaData(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      if (selectedItem === 'Dashboard') {
+        
+      }
     };
 
     fetchData();
@@ -39,7 +57,7 @@ export const AdminPage = () => {
   const componentMapping = {
     Dashboard: <Dashboard/>,
     Usuarios: <UsersPage userData={userData}/>,
-    Empresas: <GestionEmpresasPage />,
+    Empresas: <GestionEmpresasPage empresaData={empresaData}/>,
     // Agrega más opciones según sea necesario
   };  
 

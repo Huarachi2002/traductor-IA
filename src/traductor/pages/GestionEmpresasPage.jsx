@@ -2,9 +2,6 @@
 import { Button } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
-import { AdminLayout } from '../layout';
-import { useEffect } from 'react';
-
 const columns = [
   { field: 'uid', headerName: 'UID'},
   { field: 'nombre_empresa', headerName: 'Empresa'},
@@ -30,32 +27,38 @@ const columns = [
   },
 ];
 
-const rows = [
-  { uid: 1, nombre_empresa: 'Sofia', correo_electronico: 'Jon@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 2, nombre_empresa: 'UAGRM', correo_electronico: 'Cersei@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado:'Activo'},
-  { uid: 3, nombre_empresa: 'Pago facil', correo_electronico: 'Jaime@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo'},
-  { uid: 4, nombre_empresa: 'Pedidos YA', correo_electronico: 'Arya@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 5, nombre_empresa: 'YANGO', correo_electronico: 'Daenerys@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 6, nombre_empresa: 'Uber', correo_electronico: 'Melisandre@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 7, nombre_empresa: 'Assure', correo_electronico: 'Ferrrar@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 8, nombre_empresa: 'Microsoft', correo_electronico: 'Rossini@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 9, nombre_empresa: 'Iphone', correo_electronico: 'Harvey@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 10, nombre_empresa: 'Android', correo_electronico: 'Jon@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 11, nombre_empresa: 'Google', correo_electronico: 'Cersei@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 12, nombre_empresa: 'Huawei', correo_electronico: 'Jaime@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 13, nombre_empresa: 'Disney', correo_electronico: 'Jon@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 14, nombre_empresa: 'Warner', correo_electronico: 'Targaryen@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 15, nombre_empresa: 'UAGRM', correo_electronico: 'Melisandre@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 16, nombre_empresa: 'Sofia', correo_electronico: 'Clifford@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 17, nombre_empresa: 'Frances', correo_electronico: 'Frances@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-  { uid: 18, nombre_empresa: 'Pedidos', correo_electronico: 'Roxie@Snow.com', direccion: 'Av. Pesherman C/ Ualabi 42 Sidney', ciudad: 'Polonia', estado: 'Activo' },
-];
-
 const handleBan = (uid) => {
   console.log(`Banear a empresa con UID: ${uid}`);
 };
 
-export const GestionEmpresasPage = () => {
+export const GestionEmpresasPage = ({empresaData}) => {
+    const rows = [];
+    if(empresaData.length === 0){
+      return;
+    };
+
+    console.log(empresaData);
+
+    if(empresaData.lista_empresas.length !== 0){
+      empresaData.lista_empresas.map(empresa => {
+        const datos = {};
+
+        if(empresa.Empresa !== null){
+          datos.ciudad = empresa.Empresa.ciudad;
+          datos.correo_electronico = empresa.Empresa.correo_electronico;
+          datos.nombre_empresa = empresa.Empresa.nombre_empresa;
+          datos.estado = empresa.Empresa.estado;
+          datos.direccion = empresa.Empresa.direccion;
+          datos.uid = empresa.Empresa.uid
+        };
+
+        rows.push(datos)
+      })
+
+      console.log(rows)
+    }else{
+      return;
+    }
 
     return (
         <div style={{ height: '100%', width: '100%'}}>

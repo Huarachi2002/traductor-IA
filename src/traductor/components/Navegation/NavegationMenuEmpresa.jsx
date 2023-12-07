@@ -22,6 +22,29 @@ export const NavegationMenuEmpresa = ({onNavegationItemClick}) => {
         <ListItem 
             component={RouterLink} 
             // to="/user-management" 
+            onClick={() => handleItemClick('Clientes')}
+        >
+            <SupervisorAccountIcon
+                sx={{
+                    marginRight: '8px',
+                    color: selectedItem === 'Clientes' ? '#fff' : '#D3D3D3',
+                }}
+            />
+            <ListItemText>
+                <Typography
+                    variant="inherit"
+                    sx={{
+                    color: selectedItem === 'Clientes' ? '#fff' : '#D3D3D3',
+                    }}
+                >
+                    Gestión de Clientes
+                </Typography>
+            </ListItemText>
+        </ListItem>
+        <Divider sx={{backgroundColor: 'white'}}/>
+        <ListItem 
+            component={RouterLink} 
+            // to="/user-management" 
             onClick={() => handleItemClick('Empresas')}
         >
             <BusinessIcon

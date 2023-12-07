@@ -38,12 +38,12 @@ export const EmpresaLayout = ({children, onNavegationItemClick}) => {
     };
 
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', height: '100vh' }}>
         {/* Menú de navegación a la izquierda */}
         <NavegationMenuEmpresa onNavegationItemClick={handleNavegationItemClick}/>
 
             {/* Contenido principal */}
-            <div style={{ flexGrow: 1 }}>
+            <div style={{ flexGrow: 1, overflowY: 'auto'  }}>
                 <AppBar position="static">
                 <Toolbar>
                     {/* Elementos a la izquierda */}

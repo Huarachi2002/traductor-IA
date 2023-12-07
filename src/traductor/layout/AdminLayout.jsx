@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react'
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { AppBar, IconButton, Toolbar, Typography, Link, } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -18,7 +18,6 @@ import { NavegationMenu } from '../components/Navegation/NavegationMenu';
 
 export const AdminLayout = ({children, onNavegationItemClick}) => {
 
-    const navigate = useNavigate();
     const theme = useTheme();
 
     const { startLogout , user} = useAuthStore();

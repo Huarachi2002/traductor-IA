@@ -8,6 +8,7 @@ import { AuthRoutes } from '../auth/routes/AuthRoutes';
 import { useAuthStore } from '../hook/useAuthStore';
 import { PaymentPage, TraductorPage, UsersPage, AdminPage } from '../traductor/pages';
 import { EmpresaPage } from "../traductor/pages/EmpresaPage";
+import { EditarCliente } from "../traductor/pages/Cliente/EditarCliente";
 
 
 export const AppRouter = () => {
@@ -51,6 +52,7 @@ export const AppRouter = () => {
                 <Route path="/empresa" element={ <EmpresaPage /> } />
                 <Route path="/users" element={ <UsersPage /> } />
                 <Route path="/payment" element={ <PaymentPage /> } />
+                <Route path="/editar/cliente" element={ <EditarCliente /> } />
                 <Route path="/" element={ <Navigate to={path} /> } />
               </>
           )

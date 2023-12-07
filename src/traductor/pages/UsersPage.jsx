@@ -2,8 +2,6 @@
 import { Button } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
-import { AdminLayout } from '../layout';
-
 const columns = [
   { field: 'uid', headerName: 'UID', width: 100 },
   { field: 'fullname', headerName: 'FullName', width: 130 },
@@ -30,27 +28,6 @@ const columns = [
     ),
   },
 ];
-
-// const rows = [
-  // {uid: 1, fullname: 'Jon Snow', correo_electronico: 'Jon@Snow.com',estado: 'Activo' },
-  // { uid: 2, fullname: 'Cersei Lannister', correo_electronico: 'Cersei@Snow.com', estado:'Activo'},
-  // { uid: 3, fullname: 'Jaime Lannister', correo_electronico: 'Jaime@Snow.com', estado: 'Activo'},
-  // { uid: 4, fullname: 'Arya Stark', correo_electronico: 'Arya@Snow.com', estado: 'Activo' },
-  // { uid: 5, fullname: 'Daenerys Targaryen', correo_electronico: 'Daenerys@Snow.com', estado: 'Activo' },
-  // { uid: 6, fullname: 'Melisandre', correo_electronico: 'Melisandre@Snow.com', estado: 'Activo' },
-  // { uid: 7, fullname: 'Ferrar Clifford', correo_electronico: 'Ferrrar@Snow.com', estado: 'Activo' },
-  // { uid: 8, fullname: 'Rossini Frances', correo_electronico: 'Rossini@Snow.com', estado: 'Activo' },
-  // { uid: 9, fullname: 'Harvey Roxie', correo_electronico: 'Harvey@Snow.com', estado: 'Activo' },
-  // { uid: 10, fullname: 'Jon Snow', correo_electronico: 'Jon@Snow.com', estado: 'Activo' },
-  // { uid: 11, fullname: 'Cersei Lannister', correo_electronico: 'Cersei@Snow.com', estado: 'Activo' },
-  // { uid: 12, fullname: 'Jaime Lannister', correo_electronico: 'Jaime@Snow.com', estado: 'Activo' },
-  // { uid: 13, fullname: 'Arya Stark', correo_electronico: 'Jon@Snow.com', estado: 'Activo' },
-  // { uid: 14, fullname: 'Targaryen', correo_electronico: 'Targaryen@Snow.com', estado: 'Activo' },
-  // { uid: 15, fullname: 'Melisandre', correo_electronico: 'Melisandre@Snow.com', estado: 'Activo' },
-  // { uid: 16, fullname: 'Clifford', correo_electronico: 'Clifford@Snow.com', estado: 'Activo' },
-  // { uid: 17, fullname: 'Frances', correo_electronico: 'Frances@Snow.com', estado: 'Activo' },
-  // { uid: 18, fullname: 'Roxie', correo_electronico: 'Roxie@Snow.com', estado: 'Activo' },
-// ];
 
 const handleBan = (id) => {
   console.log(`Banear a usuario con ID: ${id}`);
