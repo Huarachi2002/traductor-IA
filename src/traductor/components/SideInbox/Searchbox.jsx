@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { LogoutOutlined, AddCircleOutline } from "@mui/icons-material"
-import { IconButton, useTheme, Paper, Typography, Grid } from "@mui/material"
+import { IconButton, useTheme, Paper, Typography, Grid, List, ListItem, ListItemText } from "@mui/material"
 import { useAuthStore } from "../../../hook/useAuthStore"
 
 import Button from '@mui/material/Button';
@@ -11,19 +11,82 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import traslateApi from "../../../api/traslateApi";
 
 export const Searchbox = () => {
     const navigate = useNavigate();
     const theme = useTheme();
     const { startLogout , user} = useAuthStore();
     const [openDialog, setOpenDialog] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [chats, setChats] = useState([]);
+
+    const [clientes, setCliente] = useState([]);
 
     const handleClickLogout = () => {
         setOpenDialog(true);
     }
-    const handleClickAddChat = () => {
-        console.log('Añadir chat')
-    }
+
+    const handleClickAddChat = async () => {
+        setOpen(true);
+        const {data} = await traslateApi.get('/users',{
+            headers: {
+                'x-token': localStorage.getItem('token'),
+                // Otros encabezados según sea necesario
+            },
+        })
+        setCliente(data.listaClientes);
+
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleUserSelect = async (selectedUser) => {
+        // Lógica para añadir el usuario al chat
+        console.log("Usuario seleccionado:", selectedUser);
+        // Aquí puedes realizar la lógica para añadir el usuario al chat
+        // Por ejemplo, puedes enviar una solicitud al servidor para agregar el usuario al chat
+        // También puedes cerrar el cuadro de diálogo después de seleccionar un usuario
+        try {
+            await traslateApi.post(`/chat`,{
+                id_socket: 'abd123',
+                uid_usuario_emisor: localStorage.getItem('uid'),
+                uid_usuario_receptor: selectedUser.uid
+            },{
+                headers: {
+                    'x-token': localStorage.getItem('token'),
+                    // Otros encabezados según sea necesario
+                },
+            });
+
+            const updatedChats = await obtenerChats(); // Debes implementar la función para obtener la lista actualizada de chats
+            setChats(updatedChats);
+            handleClose();
+        } catch (error) {
+            console.error("Error al añadir usuario al chat:", error);
+        }
+        
+    };
+    
+    useEffect(() => {
+        // Aquí puedes realizar acciones después de actualizar el estado de los chats
+        console.log("Chats actualizados:", chats);
+    }, [chats]);
+
+    const obtenerChats = async () => {
+        // Implementa la lógica para obtener la lista actualizada de chats
+        // Puedes usar traslateApi.get o cualquier método necesario para obtener la información de los chats
+        // Retorna la lista actualizada de chats
+        const {data} = await traslateApi.get('/users',{
+            headers: {
+                'x-token': localStorage.getItem('token'),
+                // Otros encabezados según sea necesario
+            },
+        })
+        return data;
+    };
 
     return (
         <>
@@ -56,6 +119,24 @@ export const Searchbox = () => {
                     </Grid>
                 </Grid>
             </Paper>
+
+            {/* Cuadro de diálogo para seleccionar un usuario */}
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Seleccionar Usuario Para iniciar Chat</DialogTitle>
+                <DialogContent>
+                <List>
+                    {clientes.map((cliente) => (
+                    <ListItem button key={cliente.cliente.uid} onClick={() => handleUserSelect(cliente.cliente)}>
+                        <ListItemText primary={cliente.cliente.fullname} />
+                    </ListItem>
+                    ))}
+                </List>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={handleClose}>Cancelar</Button>
+                </DialogActions>
+            </Dialog>
+
             <Dialog
                 open={openDialog}
                 onClose={() => setOpenDialog(false)}

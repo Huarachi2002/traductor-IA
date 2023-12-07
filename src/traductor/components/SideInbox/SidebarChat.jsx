@@ -27,7 +27,7 @@ export const SidebarChat = ({chat, clicked, handleClick}) => {
               variant="h5"
               style={{ color: theme.palette.text.primary }}
             >
-              {chat.uid_usuario_receptor}
+              {chat.fullname}
             </Typography>
             {
               (chat.estado === true)

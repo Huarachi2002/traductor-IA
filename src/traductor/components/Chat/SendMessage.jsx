@@ -61,7 +61,7 @@ export const SendMessage = ({ onSend }) => {
         const audioBlob = new Blob(localAudioChunks, { type: mimeType });
         // console.log(audioBlob);
         const audioUrl = URL.createObjectURL(audioBlob);
-        onSend(audioUrl);
+        onSend(audioBlob);
         setAudio(audioUrl);
         setAudioChunks([]);
       };
