@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { LogoutOutlined } from "@mui/icons-material"
+import { LogoutOutlined, AddCircleOutline } from "@mui/icons-material"
 import { IconButton, useTheme, Paper, Typography, Grid } from "@mui/material"
 import { useAuthStore } from "../../../hook/useAuthStore"
 
@@ -21,6 +21,9 @@ export const Searchbox = () => {
     const handleClickLogout = () => {
         setOpenDialog(true);
     }
+    const handleClickAddChat = () => {
+        console.log('Añadir chat')
+    }
 
     return (
         <>
@@ -36,7 +39,13 @@ export const Searchbox = () => {
                     </Grid>
                     <Grid item xs={12} sm={4} className="srch_bar">
                         <Grid container justifyContent="flex-end" spacing={1}>
-                        
+                            
+                            <Grid item>
+                                {/* Reemplaza el icono de salida por el icono de '+' */}
+                                <IconButton onClick={handleClickAddChat}>
+                                    <AddCircleOutline sx={{ color: theme.palette.info.main }} />
+                                </IconButton>
+                            </Grid>
                             <Grid item>
                                 <IconButton onClick={handleClickLogout}>
                                     <LogoutOutlined sx={{ color: theme.palette.error.main }} />

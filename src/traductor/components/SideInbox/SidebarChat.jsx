@@ -10,7 +10,7 @@ export const SidebarChat = ({chat, clicked, handleClick}) => {
     <Paper 
       className="chat_list"
       style={{
-        backgroundColor: clicked === chat.id ? theme.palette.primary.main : 'white',
+        backgroundColor: clicked === chat.uid ? theme.palette.primary.main : 'white',
       }}
       onClick={() => handleClick()}
     >
@@ -27,10 +27,10 @@ export const SidebarChat = ({chat, clicked, handleClick}) => {
               variant="h5"
               style={{ color: theme.palette.text.primary }}
             >
-              {chat.name}
+              {chat.uid_usuario_receptor}
             </Typography>
             {
-              (chat.estado === 'Online')
+              (chat.estado === true)
               ?  <Typography 
                     variant="body1" 
                     // className="text-success"

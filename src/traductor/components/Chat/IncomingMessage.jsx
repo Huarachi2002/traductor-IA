@@ -24,8 +24,8 @@ export const IncomingMessage = ({mensaje}) => {
 
     useEffect(() => {
         const obtenerContenido = async () => {
-        const resultado = await esBlob(mensaje);
-        setContenido(resultado);
+          const resultado = await esBlob(mensaje);
+          setContenido(resultado);
         };
 
         obtenerContenido();

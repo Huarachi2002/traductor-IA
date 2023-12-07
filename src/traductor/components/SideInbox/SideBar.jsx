@@ -2,18 +2,31 @@ import { Grid } from '@mui/material';
 import '../../../css/chat.css';
 import { useAuthStore } from '../../../hook/useAuthStore';
 import { SidebarChat } from "./SidebarChat";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import traslateApi from '../../../api/traslateApi';
 
 export const SideBar = ({onChatSelected}) => {
-  const chats = [
-    {id: '8r39hf3', name: 'Gabriel', estado:'Online'},
-    {id: '8r39hf4', name: 'Ginno', estado:'Offline'},
-    {id: '8r39hf5', name: 'Wu', estado:'Online'},
-    {id: '8r39hf6', name: 'Dario', estado:'Online'},
-    {id: '8r39hf7', name: 'Yefferson', estado:'Offline'},
-    {id: '8r39hf8', name: 'Micaela', estado:'Online'},
-    {id: '8r39hf9', name: 'Julio', estado:'Offline'}
-  ];
+  const [chats, setChats] = useState([]);
+
+  const obtenerChats = async () => {
+    const {data} = await traslateApi.get(`/chat/chat_list_uid_usuario/${localStorage.getItem('uid')}`) 
+    setChats(data);
+    console.log(data)
+  }
+
+  useEffect(() => {
+    obtenerChats()
+  }, [])
+  
+  // const chats = [
+  //   {id: '8r39hf3', name: 'Gabriel', estado:'Online'},
+  //   {id: '8r39hf4', name: 'Ginno', estado:'Offline'},
+  //   {id: '8r39hf5', name: 'Wu', estado:'Online'},
+  //   {id: '8r39hf6', name: 'Dario', estado:'Online'},
+  //   {id: '8r39hf7', name: 'Yefferson', estado:'Offline'},
+  //   {id: '8r39hf8', name: 'Micaela', estado:'Online'},
+  //   {id: '8r39hf9', name: 'Julio', estado:'Offline'}
+  // ];
   const [clicked, setClicked] = useState(null);
 
   const handleClick = (id) => {
@@ -25,10 +38,10 @@ export const SideBar = ({onChatSelected}) => {
 
         {
             chats.map( (chat) => (
-              <Grid item xs={12} key={chat.id}>
+              <Grid item xs={12} key={chat.uid}>
                   <SidebarChat 
                     chat={chat}
-                    handleClick={() => handleClick(chat.id)}
+                    handleClick={() => handleClick(chat.uid)}
                     clicked={clicked}
                   />
               </Grid>
