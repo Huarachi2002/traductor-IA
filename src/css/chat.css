@@ -61,7 +61,7 @@ img {
 }
 
 .srch_bar .input-group-addon button {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0; */
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
     padding: 0;
     color: #707070;
@@ -115,6 +115,13 @@ img {
 .inbox_chat {
     height: 100vh;
     overflow-y: scroll;
+}
+
+.inbox_chat_container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .active_chat {
@@ -213,7 +220,7 @@ img {
 }
 
 .extra_space {
-    height: 150px;
+    height: 75px;
 }
 
 .search-bar:focus, .write_msg:focus {

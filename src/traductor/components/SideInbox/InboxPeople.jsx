@@ -1,13 +1,13 @@
 import { Searchbox } from "./Searchbox"
 import { SideBar } from "./SideBar"
 
-export const InboxPeople = () => {
+export const InboxPeople = ({onChatSelect}) => {
     return (
         <div className="inbox_people">
 
             <Searchbox />
 
-            <SideBar />
+            <SideBar onChatSelected={onChatSelect}/>
 
         </div>
     )

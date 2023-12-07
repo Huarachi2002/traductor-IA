@@ -1,106 +1,165 @@
-import { TraductorLayout } from "../layout/TraductorLayout"
+import { useTheme } from "@emotion/react";
+import { Button, Card, CardContent, Container, Grid, TextField, Typography } from "@mui/material";
+import { useState } from "react";
 
 export const PaymentPage = () => {
-  return (
-    <TraductorLayout>
-        <div className="container-fluid bg-gradient p-5">
-            <div className="row m-auto text-center w-75">
-                
-                <div className="col-4 princing-item red">
-                <div className="pricing-divider ">
-                    <h3 className="text-light">START-UP</h3>
-                    <h4 className="my-0 display-4 text-light font-weight-normal mb-3"><span className="h3">$</span> 120 <span className="h5">/mo</span></h4>
-                    <svg className='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
-                        <path className='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
-                    c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
-                        <path className='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
-                    c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
-                        <path className='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
-                    H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
-                        <path className='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
-                    c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
-                    </svg>
-            </div>
-                <div className="card-body bg-white mt-0 shadow">
-                    <ul className="list-unstyled mb-5 position-relative">
-                    <li><b>10</b> users included</li>
-                    <li><b>2 GB</b> of storage</li>
-                    <li><b>Free </b>Email support</li>
-                    <li><b>Help center access</b></li>
-                    </ul>
-                    <button type="button" className="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
-                </div>
-            </div>
-            
+    const theme = useTheme();
 
-                
-                
-                <div className="col-4 princing-item blue">
-                <div className="pricing-divider ">
-                    <h3 className="text-light">BUSINESS</h3>
-                    <h4 className="my-0 display-4 text-light font-weight-normal mb-3"><span className="h3">$</span> 250 <span className="h5">/mo</span></h4>
-                    <svg className='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
-                        <path className='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
-                        c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
-                        <path className='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
-                        c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
-                        <path className='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
-                        H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
-                        <path className='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
-                        c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
-                    </svg>
-            </div>
+    const [cantidadUsuarios, setCantidadUsuarios] = useState(null);
 
-                <div className="card-body bg-white mt-0 shadow">
-                    <ul className="list-unstyled mb-5 position-relative">
-                    <li><b>100 </b>users included</li>
-                    <li><b>10 GB</b> of storage</li>
-                    <li><b>Free</b>Email support</li>
-                    <li><b>Help center access</b></li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
-                </div>
-            </div>
-                    
-                
-        
-                
-                
-                
-                <div className="col-4 princing-item green">
-                <div className="pricing-divider ">
-                    <h3 className="text-light">PRO</h3>
-                    <h4 className="my-0 display-4 text-light font-weight-normal mb-3"><span className="h3">$</span> 450 <span className="h5">/mo</span></h4>
-                    <svg className='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
-                    <path className='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
-                        c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
-                    <path className='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
-                        c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
-                    <path className='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
-                        H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
-                    <path className='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
-                        c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
-                    </svg>
-            </div>
+    const handleSubscribe = (plan, users) => {
+        // Implementa lógica de suscripción aquí
+        console.log(users)
+        const price = getPriceForPlan(plan);  // Implementa la lógica real para obtener el precio según el plan
+        const totalPagar = price * users;
+        console.log(`¡Te has suscrito al plan ${plan}!`);
+        console.log(`Cantidad de usuarios: ${users}`);
+        console.log(`Total a pagar: ${totalPagar}`);
+    };
 
-                <div className="card-body bg-white mt-0 shadow">
-                    <ul className="list-unstyled mb-5 position-relative">
-                    <li><b>300</b> users included</li>
-                    <li><b>20 GB</b> of storage</li>
-                    <li><b>Free</b> Email support</li>
-                    <li><b>Help center access</b></li>
-                    </ul>
-                    <button type="button" className="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
-                </div>
-            </div>
-                    
-                
-                
-                
-                
-                
-            </div>
-        </div>
-    </TraductorLayout>
-  )
+    const getPriceForPlan = (plan) => {
+        if(plan === 'mensual'){
+            return 9.99; 
+        }else if(plan === 'semestral'){
+            return 49.99; 
+        }else if(plan === 'anual'){
+            return 89.99; 
+        }
+        // Implementa la lógica real para obtener el precio según el plan
+        // Puedes agregar un objeto de precios o una llamada a una API aquí
+        // Ejemplo de precio mensual
+    };
+    
+    return (
+        <Container maxWidth="md" style={{ marginTop: '50px' }}>
+            <Typography variant="h4" align="center" gutterBottom>
+                Elige tu plan de suscripción
+            </Typography>
+            <Grid container spacing={3} justifyContent="center">
+                <Grid item xs={12} sm={4}>
+                    <Card style={{ backgroundColor: '#CCCCCC' }}>
+                        <CardContent>
+                            <Typography variant="h6" align="center" gutterBottom style={{ color: '#333333' }}>
+                                Mensual
+                            </Typography>
+                            <Typography variant="h5" align="center" gutterBottom style={{ color: '#333333' }}>
+                                $9.99/mes
+                            </Typography>
+                            <Typography variant="body1" gutterBottom>
+                                Obten los siguientes beneficios a tan solo $9.99/mes:
+                            </Typography>
+                            <Typography variant="body2" gutterBottom>
+                                - Acceso a los chats globales por 1 mes
+                            </Typography>
+                            <Typography variant="body2" gutterBottom>
+                                - Posibilidad de traducción internacional entre distintas empresas habilitadas.
+                            </Typography>
+                            <Typography variant="body2" gutterBottom>
+                                - Traduccion en tiempo real de audio en el idioma requerido.
+                            </Typography>
+                            <TextField
+                                label="Cantidad de Usuarios"
+                                type="number"
+                                fullWidth
+                                margin="normal"
+                                variant="outlined"
+                                onChange={(e) => setCantidadUsuarios(parseInt(e.target.value))}
+                            />
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                fullWidth
+                                style={{ backgroundColor: theme.palette.secondary.main, color: theme.palette.text.primary }}
+                                onClick={() => handleSubscribe('mensual', cantidadUsuarios)}
+                            >
+                                Suscribirse
+                            </Button>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <Card style={{ backgroundColor: '#999999' }}>
+                    <CardContent>
+                        <Typography variant="h6" align="center" gutterBottom style={{ color: '#FFFFFF' }}>
+                            Semestral
+                        </Typography>
+                        <Typography variant="h5" align="center" gutterBottom style={{ color: '#FFFFFF' }}>
+                            $49.99/semestre
+                        </Typography>
+                        <Typography variant="body1" gutterBottom style={{ color: '#FFFFFF' }}>
+                            Obten los siguientes beneficios a tan solo $49.99/semestre:
+                        </Typography>
+                        <Typography variant="body2" gutterBottom style={{ color: '#FFFFFF' }}>
+                            - Acceso a los chats globales por 6 meses
+                        </Typography>
+                        <Typography variant="body2" gutterBottom style={{ color: '#FFFFFF' }}>
+                            - Posibilidad de traducción internacional entre distintas empresas habilitadas.
+                        </Typography>
+                        <Typography variant="body2" gutterBottom style={{ color: '#FFFFFF' }}>
+                            - Traducción en tiempo real de audio en el idioma requerido.
+                        </Typography>
+                        <TextField
+                            label="Cantidad de Usuarios"
+                            type="number"
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            onChange={(e) => setCantidadUsuarios(parseInt(e.target.value))}
+                        />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            style={{ backgroundColor: theme.palette.primary.main, color: theme.palette.text.primary }}
+                            onClick={() => handleSubscribe('semestral', cantidadUsuarios)}
+                        >
+                            Suscribirse
+                        </Button>
+                    </CardContent>
+                </Card>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <Card style={{ backgroundColor: '#FFB74D' }}>
+                    <CardContent>
+                        <Typography variant="h6" align="center" gutterBottom style={{ color: '#FFFFFF' }}>
+                            Anual
+                        </Typography>
+                        <Typography variant="h5" align="center" gutterBottom style={{ color: '#FFFFFF' }}>
+                            $89.99/año
+                        </Typography>
+                        <Typography variant="body1" gutterBottom style={{ color: '#FFFFFF' }}>
+                            Obten los siguientes beneficios a tan solo $89.99/año:
+                        </Typography>
+                        <Typography variant="body2" gutterBottom style={{ color: '#FFFFFF' }}>
+                            - Acceso a los chats globales por 12 meses
+                        </Typography>
+                        <Typography variant="body2" gutterBottom style={{ color: '#FFFFFF' }}>
+                            - Posibilidad de traducción internacional entre distintas empresas habilitadas.
+                        </Typography>
+                        <Typography variant="body2" gutterBottom style={{ color: '#FFFFFF' }}>
+                            - Traducción en tiempo real de audio en el idioma requerido.
+                        </Typography>
+                        <TextField
+                            label="Cantidad de Usuarios"
+                            type="number"
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            onChange={(e) => setCantidadUsuarios(parseInt(e.target.value))}
+                        />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            style={{ backgroundColor: theme.palette.primary.main, color: theme.palette.text.primary }}
+                            onClick={() => handleSubscribe('anual', cantidadUsuarios)}
+                        >
+                            Suscribirse
+                        </Button>
+                    </CardContent>
+                </Card>
+                </Grid>
+            </Grid>
+        </Container>
+    )
 }

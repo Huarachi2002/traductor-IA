@@ -8,7 +8,7 @@ export const AuthLayout = ({children,title = ''}) => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{minHeight:'100vh',  backgroundColor:'primary.main', padding:0}}
+      sx={{minHeight:'100vh',  backgroundColor:'primary.main', padding:0, overflowY: 'auto'}}
     >
         <h1 >Traslate IA</h1>
         <Grid item

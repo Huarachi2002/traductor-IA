@@ -1,15 +1,22 @@
+import React, { useState } from "react";
 import { ChatSelect } from "../components/ChatSelect";
-import { InboxPeople } from "../components/InboxPeople";
+import { InboxPeople } from "../components/SideInbox/InboxPeople";
 
 export const TraductorLayout = ({children}) => {
+  const [selectedChat, setSelectedChat] = useState(null);
+
+  const handleChatSelect = (chatInfo) => {
+    setSelectedChat(chatInfo);
+  };
+
   return (
     <div className="messaging">
       <div className="inbox_msg">
-          <InboxPeople />
+          <InboxPeople onChatSelect={handleChatSelect}/>
           {
-            (true)
-            ? children
-            : <ChatSelect />
+            selectedChat === null
+            ? (<ChatSelect/>)
+            : (React.cloneElement(children, { selectedChat }))
           }
       </div>
     </div>

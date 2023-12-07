@@ -7,29 +7,31 @@ import { useAuthStore } from "../../hook/useAuthStore";
 import Swal from "sweetalert2";
 
 const formData = {
-  email: '',
-  password: ''
+  correo_electronico: '',
+  password_user: ''
 };
 
 export const LoginPage = () => {
 
   const {startLogin, errorMessage} = useAuthStore();
   
-  const {email, password,onInputChange} = useForm(formData);
+  const {correo_electronico, password_user,onInputChange} = useForm(formData);
 
 
   // const isAuthenticating = useMemo(() => status === 'checking' , [status])
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     //! No es la accion a despachar
-    startLogin({correo:email,password});
+    await startLogin({correo_electronico,password_user});
   }
 
   useEffect(() => {
     if(errorMessage !== undefined){
         Swal.fire('Error en la autenticacion', errorMessage, 'error');
     }
+
+    localStorage.clear();
   }, [errorMessage])
 
   return (
@@ -39,11 +41,11 @@ export const LoginPage = () => {
       onSubmit={onSubmit}>
             <Grid container>
               <Grid item xs={12} sx={{mt:2}}>
-                <TextField label="Correo" type="email" placeholder="correo@gmail.com" fullWidth name="email" value={email} onChange={onInputChange}/>
+                <TextField label="Correo" type="email" placeholder="correo@gmail.com" fullWidth name="correo_electronico" value={correo_electronico} onChange={onInputChange}/>
               </Grid>
 
               <Grid item xs={12} sx={{mt:2}}>
-                <TextField label="Contraseña" type="password" placeholder="Contraseña" fullWidth name="password" value={password} onChange={onInputChange}/>
+                <TextField label="Contraseña" type="password" placeholder="Contraseña" fullWidth name="password_user" value={password_user} onChange={onInputChange}/>
               </Grid>
 
               <Grid container spacing={2} sx={{mb:2, mt:1}}>
@@ -59,7 +61,7 @@ export const LoginPage = () => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <Button variant="contained" fullWidth >
-                      <Link component={RouterLink} color="inherit" to="/auth/register">
+                      <Link component={RouterLink} color="inherit" to="/auth/register" underline="none">
                         Crear una cuenta
                       </Link>
                     </Button>
