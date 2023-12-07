@@ -13,9 +13,9 @@ export const NavegationMenu = ({onNavegationItemClick}) => {
 
     const [selectedItem, setSelectedItem] = useState(null);
 
-    const handleItemClick = (itemName) => {
+    const handleItemClick = async (itemName) => {
         setSelectedItem(itemName);
-        onNavegationItemClick(itemName)
+        onNavegationItemClick(itemName);
     };
 
     return (
