@@ -27,7 +27,10 @@ export const SidebarChat = ({chat, clicked, handleClick}) => {
               variant="h5"
               style={{ color: theme.palette.text.primary }}
             >
-              {chat.fullname}
+              {chat.emisor !== localStorage.getItem('name')
+                ? (chat.emisor)
+                : (chat.receptor)
+              }
             </Typography>
             {
               (chat.estado === true)
