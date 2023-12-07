@@ -37,7 +37,6 @@ export const EmpresaLayout = ({children, onNavegationItemClick}) => {
         navigate('/payment')
     };
 
-
     return (
         <div style={{ display: 'flex' }}>
         {/* Menú de navegación a la izquierda */}

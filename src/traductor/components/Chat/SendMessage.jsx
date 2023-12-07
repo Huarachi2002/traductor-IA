@@ -3,12 +3,13 @@ import React, { useRef, useState } from "react";
 
 const mimeType = "audio/webm";
 
-export const SendMessage = () => {
-  const [mensaje, setMensaje] = useState("");
+export const SendMessage = ({ onSend }) => {
   const [recording, setRecording] = useState(false);
   const [audioChunks, setAudioChunks] = useState([]);
   const [audio, setAudio] = useState(null);
   const mediaRecorder = useRef(null);
+
+  const [mensaje, setMensaje] = useState('');
 
   const [permission, setPermission] = useState(false);
   const [stream, setStream] = useState(null);
@@ -52,7 +53,6 @@ export const SendMessage = () => {
       let localAudioChunks = [];
 
       mediaRecorder.current.ondataavailable = (event) => {
-        console.log(event);
         if (typeof event.data === "undefined" || event.data.size === 0) return;
         localAudioChunks.push(event.data);
       };
@@ -61,6 +61,7 @@ export const SendMessage = () => {
         const audioBlob = new Blob(localAudioChunks, { type: mimeType });
         // console.log(audioBlob);
         const audioUrl = URL.createObjectURL(audioBlob);
+        onSend(audioUrl);
         setAudio(audioUrl);
         setAudioChunks([]);
       };
@@ -84,14 +85,6 @@ export const SendMessage = () => {
     setMensaje(event.target.value);
   };
 
-  const handleSend = () => {
-    console.log("Mensaje enviado:", mensaje);
-    // Aquí puedes realizar cualquier lógica adicional con el mensaje
-
-    // Limpiar el input después de enviar el mensaje
-    setMensaje("");
-  };
-
   return (
     <div className="type_msg row">
       <div className="input_msg_write col-sm-9">
@@ -104,7 +97,6 @@ export const SendMessage = () => {
         />
       </div>
       <div className="col-sm-3 text-center">
-        {audio ? <audio src={audio} controls></audio> : null}
         <button
           type="button"
           style={{ background: recording ? "red" : "" }}
@@ -116,7 +108,7 @@ export const SendMessage = () => {
         <button
           className="msg_send_btn mt-3"
           type="button"
-          onClick={handleSend}
+          onClick={() => onSend(mensaje)}
         >
           <Send />
         </button>

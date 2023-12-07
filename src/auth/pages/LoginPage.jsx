@@ -62,7 +62,7 @@ export const LoginPage = () => {
                 <Grid item xs={12} sm={6}>
                     <Button variant="contained" fullWidth >
                       <Link component={RouterLink} color="inherit" to="/auth/register" underline="none">
-                        Crear una cuenta
+                        Crear Cuenta Empresa
                       </Link>
                     </Button>
                 </Grid>
